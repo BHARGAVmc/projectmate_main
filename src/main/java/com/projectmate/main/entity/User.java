@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectmate.main.enums.Role;
 
 import jakarta.persistence.CascadeType;
@@ -44,18 +45,22 @@ public class User {
 
     // One User -> One Profile
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Profile profile;
 
     // One User -> Many Projects
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Project> projects = new ArrayList<>();
 
     // One User -> Many Join Requests
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ProjectRequest> requests = new ArrayList<>();
 
     // One User -> Many Project Memberships
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ProjectMember> memberships = new ArrayList<>();
 
 }

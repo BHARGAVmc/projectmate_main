@@ -2,6 +2,8 @@ package com.projectmate.main.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,10 +24,12 @@ public class ProjectMember {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @JsonIgnore
     private Project project;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 }

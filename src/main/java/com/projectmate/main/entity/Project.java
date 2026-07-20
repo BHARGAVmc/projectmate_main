@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectmate.main.enums.CompletionStatus;
 import com.projectmate.main.enums.ProjectStatus;
 
@@ -52,12 +53,15 @@ public class Project {
     private User owner;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ProjectRequest> requests = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ProjectMember> members = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Feedback> feedbacks = new ArrayList<>();
 
 }

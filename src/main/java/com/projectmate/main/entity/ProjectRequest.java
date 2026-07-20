@@ -2,6 +2,7 @@ package com.projectmate.main.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectmate.main.enums.RequestStatus;
 
 import jakarta.persistence.*;
@@ -27,10 +28,12 @@ public class ProjectRequest {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @JsonIgnore
     private Project project;
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
+    @JsonIgnore
     private User sender;
 
 }

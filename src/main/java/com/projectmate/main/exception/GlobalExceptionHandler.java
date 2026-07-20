@@ -31,6 +31,41 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ProjectNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleProjectNotFound(ProjectNotFoundException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DuplicateRequestException.class)
+    public ResponseEntity<ApiResponse<Void>> handleDuplicateRequest(DuplicateRequestException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AlreadyMemberException.class)
+    public ResponseEntity<ApiResponse<Void>> handleAlreadyMember(AlreadyMemberException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ProjectClosedException.class)
+    public ResponseEntity<ApiResponse<Void>> handleProjectClosed(ProjectClosedException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UnauthorizedProjectAccessException.class)
+    public ResponseEntity<ApiResponse<Void>> handleUnauthorizedProjectAccess(UnauthorizedProjectAccessException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(TeamFullException.class)
+    public ResponseEntity<ApiResponse<Void>> handleTeamFull(TeamFullException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<ApiResponse<Void>> handleInvalidRequest(InvalidRequestException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationErrors(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
